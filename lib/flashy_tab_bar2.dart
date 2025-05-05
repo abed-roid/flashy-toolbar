@@ -12,6 +12,7 @@ class FlashyTabBar extends StatelessWidget {
     this.selectedIndex = 0,
     this.height = 60,
     this.showElevation = true,
+    this.opacity = 1.0, // Added opacity parameter
     this.iconSize = 20,
     this.backgroundColor,
     this.animationDuration = const Duration(milliseconds: 170),
@@ -25,9 +26,6 @@ class FlashyTabBar extends StatelessWidget {
     required this.items,
     required this.onItemSelected,
   }) : super(key: key) {
-    assert(height >= 55 && height <= 100);
-    assert(items.length >= 2 && items.length <= 5);
-    assert(iconSize >= 15 && iconSize <= 50);
   }
 
   final Curve animationCurve;
@@ -35,6 +33,7 @@ class FlashyTabBar extends StatelessWidget {
   final Color? backgroundColor;
   final double height;
   final double iconSize;
+  final double opacity;
   final List<FlashyTabBarItem> items;
   final ValueChanged<int> onItemSelected;
   final int selectedIndex;
@@ -56,7 +55,7 @@ class FlashyTabBar extends StatelessWidget {
         child: Container(
           width: double.infinity,
           height: height + iconSizeEffectCalculator(iconSize),
-          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: items.map((item) {
@@ -193,7 +192,6 @@ class _FlashTabBarItem extends StatelessWidget {
                 bottom: 0,
                 child: CustomPaint(
                   child: SizedBox(
-                    width: 80,
                     height: iconSize,
                   ),
                   painter: _CustomPath(backgroundColor, iconSize),
