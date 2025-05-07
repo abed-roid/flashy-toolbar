@@ -142,14 +142,14 @@ class _FlashTabBarItem extends StatelessWidget {
               child: AnimatedOpacity(
                   opacity: isSelected ? 1.0 : 1.0,
                   duration: animationDuration,
-                  child: IconTheme(
+                  child: item.icon is Icon ? IconTheme(
                     data: IconThemeData(
                         size: iconSize,
                         color: isSelected
                             ? item.activeColor.withOpacity(1)
                             : item.inactiveColor),
                     child: item.icon,
-                  )),
+                  ) : item.icon),
               alignment: isSelected ? Alignment.topCenter : Alignment.center,
             ),
             AnimatedPositioned(
